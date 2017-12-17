@@ -1,6 +1,6 @@
 <h1 align="center">vai ⚡️  </h1>
 
-<h5 align="center">A CLI script runtime to bring order to your scripts</h5>
+<h5 align="center">A CLI script runtime to bring order to your scripts (or not)</h5>
 
 <br/>
 
@@ -62,4 +62,10 @@ vai
 vai say-world
 world!
 ```
+
+### Should I use this?
+
+Well, maybe yes, maybe not.
+
+This was meant to be just a quick experiment and is probably not suitable for real use case. However, feel free to make use of it if you find useful 👌
 
