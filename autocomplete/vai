@@ -1,0 +1,15 @@
+#compdef vai
+# vim: set syntax=zsh
+
+_vai () {
+  local -a commands
+  commands=("${(@f)$(vai _compl "$input")}")
+
+  if (( CURRENT == 2)); then
+    _describe -t commands 'commands' commands
+  fi
+
+  return 0
+}
+
+_vai

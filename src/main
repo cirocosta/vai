@@ -1,0 +1,39 @@
+#!/bin/bash
+
+set -o errexit
+
+export VAI_DIR=$(dirname $(readlink "${BASH_SOURCE[0]}"))
+export VAI_COMMANDS_DIR="${VAI_DIR}/../commands"
+
+main() {
+  if [[ -z $1 ]]; then
+    try_to_execute_script "${VAI_COMMANDS_DIR}/help.sh"
+    exit 0
+  fi
+
+  local script_name=$1
+  shift
+
+  try_to_execute_script "${VAI_COMMANDS_DIR}/${script_name}.sh" "$@"
+}
+
+# Tries to execute a given script.
+#
+# Args:
+#   script:     name of  the script to be searched for
+#               in 'vai' directory
+#   ...args:    arguments forwarded to the script
+try_to_execute_script() {
+  local script=$1
+  shift
+
+  if ! [[ -f ${script} ]]; then
+    log::red "Error: Couldn't execute command '$(basename -s .sh $script)'"
+    echo "If you want to see the list of available commands enter 'vai list'"
+    exit 1
+  fi
+
+  bash ${script} main $@
+}
+
+main "$@"
